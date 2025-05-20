@@ -1,5 +1,8 @@
 #include "asio_buffer.h"
+#include <netcomms/asiocomms/sockets/asio_socket_api.h>
+
 #include <iostream>
+
 
 
 using namespace asiocomms;
@@ -7,11 +10,8 @@ using namespace asiocomms;
 asio_buffer::asio_buffer(asio_socket_api* socket)
 {
     socket_ = socket;
-}
-
-asio_buffer::asio_buffer(asio_socket_api* socket)
-{
     data = std::make_unique<char[]>(MAX_BUFFER_SIZE); 
+
 }
 
 void asio_buffer::init()

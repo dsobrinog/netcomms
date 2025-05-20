@@ -2,13 +2,14 @@
 #define ASIO_SOCKET
 
 #include <asio.hpp>
-#include <comms/asiocomms/asio_center.h>
-#include <comms/asiocomms/sockets/asio_buffer.h>
+#include <netcomms/asiocomms/sockets/asio_buffer.h>
 
 // Abstraction Asio Socket 
 namespace asiocomms
 {
+    class asio_center;
     using asio::ip::udp;
+
 
     enum class SocketType
     {
@@ -32,27 +33,32 @@ namespace asiocomms
 
             // creation
             virtual void init(const std::string& local_ip, unsigned short local_port) = 0;
-            void set_options();
+            virtual void set_options() = 0;
 
             // basic socket operations
             virtual void open() = 0;
             virtual void bind() = 0;
-            virtual void connect() = 0;
+            virtual void connect(const std::string& remote_ip, unsigned short remote_port) = 0;
 
             // async
             virtual void start_send() = 0;
             virtual void start_receive() = 0;
 
             // closure
-            void close_socket();
+            virtual void close_socket() = 0;
 
             // status
             ConnectionStatus connection_status;
 
         protected:
+
             asio_center* asio_center_;
 
             SocketType socketType;
+
+
+            // Make Adress
+            asio::ip::address make_adress(const std::string& local_ip);
     };
 }
 

@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/lib/asio/asio/include",  // Path to Asio headers
+                "${workspaceFolder}/src"                     // Include your project's src directory
+            ],
+            "defines": [
+                "ASIO_STANDALONE"  // Required for standalone Asio (no Boost)
+            ],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/g++"  // Ensure this matches your compiler
+        }
+    ],
+    "version": 4
+}

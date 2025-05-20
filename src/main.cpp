@@ -18,8 +18,8 @@ int main() {
     _exec = new Executive;
 
     std::cout << "Adding modules..." << std::endl;
-    cl_ifczmq* moduleZmq = new cl_ifczmq(module_id++, _exec);
-    cl_ifcasio* moduleAsio = new cl_ifcasio(module_id++, _exec);
+    cl_ifcZmq* moduleZmq = new cl_ifcZmq(module_id++, _exec);
+    cl_ifcAsio* moduleAsio = new cl_ifcAsio(module_id++, _exec);
 
     _exec->add_module(moduleZmq);
     _exec->add_module(moduleAsio);

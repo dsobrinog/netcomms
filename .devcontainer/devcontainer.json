@@ -1,0 +1,14 @@
+{
+    "name": "C++ Development",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "extensions": [
+        "ms-vscode.cpptools"
+    ],
+    "settings": {
+        "C_Cpp.default.includePath": [
+            "/usr/include/c++/*"
+        ]
+    }
+}

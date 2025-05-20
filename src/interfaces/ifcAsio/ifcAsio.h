@@ -3,13 +3,13 @@
 
 #include <asio.hpp>
 #include <core/module.h>
-#include <comms/asiocomms/asio_center.h>
+#include <netcomms/asiocomms/asio_center.h>
 
-class cl_ifcasio : public cl_module
+class cl_ifcAsio : public cl_module
 {
 public:
-    cl_ifcasio(int moduleId, Executive* _exec);
-    ~cl_ifcasio();
+    cl_ifcAsio(int moduleId, Executive* _exec);
+    ~cl_ifcAsio();
 
     void init();
     void read();
@@ -17,7 +17,7 @@ public:
 
 private:
     Executive* exec;
-    asiocomms::asio_center asio_cntr;
+    asiocomms::asio_center asio_center_;
 };
 
 #endif

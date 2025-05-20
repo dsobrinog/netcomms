@@ -2,13 +2,13 @@
 #define IFCZMQ_H
 
 #include "core/module.h"
-#include "comms/zmqcomms/zmq_center.h"
+#include "netcomms/zmqcomms/zmq_center.h"
 
-class cl_ifczmq : public cl_module
+class cl_ifcZmq : public cl_module
 {
 public:
-    cl_ifczmq(int moduleId, Executive* _exec);
-    ~cl_ifczmq();
+    cl_ifcZmq(int moduleId, Executive* _exec);
+    ~cl_ifcZmq();
 
     void init();
     void read();

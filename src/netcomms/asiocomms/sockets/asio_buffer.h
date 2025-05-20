@@ -2,7 +2,6 @@
 #define ASIO_BUFFER
 
 #include <asio.hpp>
-#include <comms/asiocomms/sockets/asio_socket_api.h>
 
 #include <memory>
 
@@ -12,6 +11,7 @@ namespace asiocomms
     using asio::ip::udp;
 
     constexpr int MAX_BUFFER_SIZE = 64000; // 64 Kb
+    class asio_socket_api;
 
     class asio_buffer
     {
