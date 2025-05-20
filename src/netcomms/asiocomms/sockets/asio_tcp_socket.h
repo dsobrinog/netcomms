@@ -8,20 +8,22 @@ namespace asiocomms
     using asio::ip::tcp;
     class asio_tcp_socket : public asio_socket_api
     {
-        asio_tcp_socket(asio_center* center);
+        public:
 
-        void init(const std::string& local_ip, unsigned short local_port);
+            asio_tcp_socket(asio_center* center);
 
-        void open();
-        void bind();
-        void connect(const std::string& remote_ip, unsigned short remote_port);
+            void init();
 
-        // async
-        virtual void start_send() = 0;
-        virtual void start_receive() = 0;
+            void open();
+            void bind(const std::string& local_ip, unsigned short local_port);
+            void connect(const std::string& remote_ip, unsigned short remote_port);
 
-        // closure
-        virtual void close_socket() = 0;
+            // async
+            void start_send();
+            void start_receive();
+
+            // closure
+            void close_socket();
         
         protected:
             asio::ip::tcp::socket* socket_;

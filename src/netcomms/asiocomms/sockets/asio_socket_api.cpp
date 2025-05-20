@@ -6,11 +6,12 @@ using namespace asiocomms;
 
 asiocomms::asio_socket_api::asio_socket_api(asio_center *asio_center)
 {
+    asio_center_ = asio_center;
 }
 
-void asio_socket_api::init(const std::string &local_ip, unsigned short local_port)
+asiocomms::asio_socket_api::~asio_socket_api()
 {
-    
+
 }
 
 asio::ip::address asio_socket_api::make_adress(const std::string& local_ip)
@@ -24,5 +25,19 @@ asio::ip::address asio_socket_api::make_adress(const std::string& local_ip)
     }
 
     return address;
+}
+
+void asio_socket_api::handle_connect(const asio::error_code& error)
+{
+    if (!error)
+    {
+        // Start read or write operations.
+
+    }
+    else
+    {
+        // Handle error.
+        std::cerr << "Error while trying to connect socket: " << error.message() << std::endl;
+    }
 }
 

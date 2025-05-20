@@ -13,11 +13,7 @@
 // Manager that creates and configure UDP sockets
 namespace asiocomms
 {
-    struct IPConfig
-    {
-        const std::string& local_ip     = "127.0.0.1";
-        unsigned short local_port       = 3000;
-    };
+    struct IPConfig;
 
     class asio_center
     {
@@ -37,7 +33,7 @@ namespace asiocomms
             // Create TCP Socket
             asio_socket_api* create_tcp_socket(IPConfig config);
             // Close Socket
-            void close_socket(asio_socket_api* socket_);
+            void remove_socket(asio_socket_api* socket_);
 
 
             // Async Operation management
@@ -49,7 +45,7 @@ namespace asiocomms
             asio::io_context io_context_;
             std::thread worker_thread_;
 
-            std::vector<asio_socket_api*> active_sockets;
+            std::vector<std::unique_ptr<asio_socket_api>> active_sockets;
     };
 }
 

@@ -4,12 +4,12 @@
 #include <asio.hpp>
 #include <netcomms/asiocomms/sockets/asio_buffer.h>
 
-// Abstraction Asio Socket 
+// Abstraction Asio UDP/TCP Sockets for Async Comms
+
 namespace asiocomms
 {
     class asio_center;
     using asio::ip::udp;
-
 
     enum class SocketType
     {
@@ -25,6 +25,15 @@ namespace asiocomms
         Error
     };
 
+    struct IPConfig
+    {
+        const std::string& local_ip     = "127.0.0.1";
+        unsigned short local_port       = 3000;
+
+        const std::string& remote_ip    = "127.0.0.1";
+        unsigned short remote_port      = 3001;
+    };
+
     class asio_socket_api
     {
         public:
@@ -32,12 +41,11 @@ namespace asiocomms
             ~asio_socket_api();
 
             // creation
-            virtual void init(const std::string& local_ip, unsigned short local_port) = 0;
-            virtual void set_options() = 0;
+            virtual void init() = 0;
 
             // basic socket operations
             virtual void open() = 0;
-            virtual void bind() = 0;
+            virtual void bind(const std::string& local_ip, unsigned short local_port) = 0;
             virtual void connect(const std::string& remote_ip, unsigned short remote_port) = 0;
 
             // async
@@ -59,6 +67,9 @@ namespace asiocomms
 
             // Make Adress
             asio::ip::address make_adress(const std::string& local_ip);
+
+            // Handle connection
+            void handle_connect(const asio::error_code& error);
     };
 }
 

@@ -11,22 +11,22 @@ namespace asiocomms
         public:
             asio_udp_socket(asio_center* center);
 
-            void init(const std::string& local_ip, unsigned short local_port);
+            void init();
 
             void open();
-            void bind();
+            void bind(const std::string &local_ip, unsigned short local_port);
             void connect(const std::string& remote_ip, unsigned short remote_port);
 
             // async
-            virtual void start_send() = 0;
-            virtual void start_receive() = 0;
+            void start_send();
+            void start_receive();
 
             // closure
-            virtual void close_socket() = 0;
+            void close_socket();
 
         protected:
         
-            asio::ip::udp::socket* socket_;
+            asio::ip::udp::socket socket_;
 
             udp::endpoint local_endpoint_;
             udp::endpoint remote_endpoint_;
