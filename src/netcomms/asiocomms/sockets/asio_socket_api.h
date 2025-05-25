@@ -9,7 +9,6 @@
 namespace asiocomms
 {
     class asio_center;
-    using asio::ip::udp;
 
     enum class SocketType
     {
